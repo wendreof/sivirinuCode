@@ -1,6 +1,7 @@
 #Our team
 <p align="center">
   <img src="extras/ourteam.jpg" width="350"/>
+  <img src="extras/sivirinu.jpeg" width="350"/>
 </p>
 
 - <a href="https://www.linkedin.com/in/douglas-domenciano-84a04212b/">Douglas Jr.</a>
