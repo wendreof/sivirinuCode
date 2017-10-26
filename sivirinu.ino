@@ -36,23 +36,24 @@ void loop()
   cmMsec = ultrasonic.convert(microsec, Ultrasonic::CM);
 
   Serial.print("Distancia em cm: "); //Exibe informacoes no serial monitor
-    Serial.println( cmMsec );
-      if( cmMsec <= 30 )
-          {
-            s.write(150);
-            delay(300);
-            s.write(50);
-            delay(300);
-          }
-            
-      if( cmMsec > 30 )
-          {
-            s.write(0);
-            delay(50);
-          }
-          delay(05);
+  Serial.println( cmMsec );
+    if( cmMsec <= 30 )
+    {
+      s.write(150);
+      delay(300);
+      s.write(50);
+      delay(300);
+    }
+          
+    if( cmMsec > 30 )
+    {
+      s.write(0);
+      delay(50);
+    }
 
-  while( Serial.available() > 0 )
+    delay(05);
+
+  while( Serial.available() > 0 ) 
   {
     buf = Serial.read();
 
