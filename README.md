@@ -1,7 +1,6 @@
 #Our team
 <p align="center">
   <img src="extras/ourteam.jpg" width="400"/>
-  <img src="extras/sivirinu.jpeg" width="400"/>
 </p>
 
 - <a href="https://www.linkedin.com/in/douglas-domenciano-84a04212b/">Douglas Jr.</a>
@@ -12,5 +11,6 @@
 #In Combat
 <p align="center">
   <img src="extras/incombat2.jpg" width="400"/>
-  <img src="extras/incombat1.jpeg" width="400"/>
+  <img src="extras/sivirinu.jpeg" width="400"/>
+  <img src="extras/incombat1.jpg" width="400"/>
 </p>
