@@ -1,7 +1,3 @@
-//Programa : Modulo Bluetooth HC-05 - Leds - Rodas
-
-
-//Armazena o caracter recebido
 #include <Servo.h>
 #define SERVO 11 // Porta Digital 11 PWM
  
@@ -14,17 +10,12 @@ int IN2 = 5;
 int IN3 = 4;
 int IN4 = 3;
 
-
-//Carrega a biblioteca do sensor ultrassonico
-#include <Ultrasonic.h>
+#include <Ultrasonic.h> //Carrega a biblioteca do sensor ultrassonico
  
-//Define os pinos para o trigger e echo
-#define pino_trigger 8
+#define pino_trigger 8 //Define os pinos para o trigger e echo
 #define pino_echo 10
 
-//Inicializa o sensor nos pinos definidos acima
-Ultrasonic ultrasonic(pino_trigger, pino_echo);
-
+Ultrasonic ultrasonic(pino_trigger, pino_echo); //Inicializa o sensor nos pinos definidos acima
 
 void setup()
 {
@@ -40,85 +31,82 @@ void setup()
 
 void loop()
 {
-   //Le as informacoes do sensor, em cm e pol
-  float cmMsec, inMsec;
+  float cmMsec, inMsec; //Le as informacoes do sensor, em cm e pol
   long microsec = ultrasonic.timing();
   cmMsec = ultrasonic.convert(microsec, Ultrasonic::CM);
-  //Exibe informacoes no serial monitor
-  Serial.print("Distancia em cm: ");
-  Serial.println(cmMsec);
-    if(cmMsec <= 30)
-         {
-           s.write(150);
-           delay(300);
-           s.write(50);
-           delay(300);
-         }
-          
-    if(cmMsec > 30)
-        {
-          s.write(0);
-          delay(50);
-        }
-        delay(05);
-  while(Serial.available() > 0)
+
+  Serial.print("Distancia em cm: "); //Exibe informacoes no serial monitor
+    Serial.println( cmMsec );
+      if( cmMsec <= 30 )
+          {
+            s.write(150);
+            delay(300);
+            s.write(50);
+            delay(300);
+          }
+            
+      if( cmMsec > 30 )
+          {
+            s.write(0);
+            delay(50);
+          }
+          delay(05);
+
+  while( Serial.available() > 0 )
   {
-buf = Serial.read();
-    
-                      //Andar para frente
-                      if (buf == 'a')
-                      {
-                        //liga roda esquerda
-                         digitalWrite(IN1, HIGH);
-                         digitalWrite(IN2, LOW);
-                        //liga roda direita
-                        digitalWrite(IN3, HIGH);
-                        digitalWrite(IN4, LOW);
-                      }
-    
-    //Andar para tras
-    if (buf == 'p')
+    buf = Serial.read();
+
+    //////////Andar para frente///////////
+    if ( buf == 'a' )    
     {
-       digitalWrite(IN1, LOW);
-       digitalWrite(IN2, HIGH);
+      //liga roda esquerda
+      digitalWrite(IN1, HIGH);
+      digitalWrite(IN2, LOW);
+      //liga roda direita
+      digitalWrite(IN3, HIGH);
+      digitalWrite(IN4, LOW);
+    }
+    //////////Andar para tras///////////
+    if ( buf == 'p' ) //
+    {
+      digitalWrite(IN1, LOW);
+      digitalWrite(IN2, HIGH);
       digitalWrite(IN3, LOW);
       digitalWrite(IN4, HIGH);
     }
 
-                    //virar para esquerda
-                     if (buf == 'e')
-                    {
-                     
-                      digitalWrite(IN3, HIGH);
-                      digitalWrite(IN4, HIGH);
-                      delay (100);
-                      digitalWrite(IN1, HIGH);
-                      digitalWrite(IN2, LOW);
-                      digitalWrite(IN3, HIGH);
-                      digitalWrite(IN4, LOW);
-                    }
-                    
-    //Virar para direita
-    if (buf == 'd')
+    //////////Virar para esquerda///////////
+    if ( buf == 'e' )  
     {
-      
-       digitalWrite(IN1, HIGH);
-       digitalWrite(IN2, HIGH);
-       delay(100);
-       digitalWrite(IN1, HIGH);
-       digitalWrite(IN2, LOW);
-       digitalWrite(IN3, HIGH);
-       digitalWrite(IN4, LOW);
+      digitalWrite(IN3, HIGH);
+      digitalWrite(IN4, HIGH);
+      delay (100);
+      digitalWrite(IN1, HIGH);
+      digitalWrite(IN2, LOW);
+      digitalWrite(IN3, HIGH);
+      digitalWrite(IN4, LOW);
     }
-    
-                                 //DESLIGAR
-                                if (buf == 'x')
-                                {
-                                   digitalWrite(IN1, LOW);
-                                   digitalWrite(IN2, LOW);
-                                   digitalWrite(IN3, LOW);
-                                   digitalWrite(IN4, LOW);
-                                }
-      
+                
+    //////////Virar para direita///////////
+    if ( buf == 'd' )  
+    {
+      digitalWrite(IN1, HIGH);
+      digitalWrite(IN2, HIGH);
+      delay(100);
+      digitalWrite(IN1, HIGH);
+      digitalWrite(IN2, LOW);
+      digitalWrite(IN3, HIGH);
+      digitalWrite(IN4, LOW);
+    }
+
+    //////////DESLIGAR///////////
+    if ( buf == 'x' ) 
+    {
+      digitalWrite(IN1, LOW);
+      digitalWrite(IN2, LOW);
+      digitalWrite(IN3, LOW);
+      digitalWrite(IN4, LOW);
+    }
+        
   }
 }
