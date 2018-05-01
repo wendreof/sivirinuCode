@@ -58,46 +58,56 @@ void loop()
     buf = Serial.read();
 
     //////////Andar para frente///////////
-    if ( buf == 'a' )    
+    if ( buf == 'f' )    
     {
       //liga roda esquerda
       digitalWrite(IN1, HIGH);
       digitalWrite(IN2, LOW);
       //liga roda direita
-      digitalWrite(IN3, HIGH);
-      digitalWrite(IN4, LOW);
-    }
-    //////////Andar para tras///////////
-    if ( buf == 'p' ) //
-    {
-      digitalWrite(IN1, LOW);
-      digitalWrite(IN2, HIGH);
       digitalWrite(IN3, LOW);
       digitalWrite(IN4, HIGH);
     }
-
-    //////////Virar para esquerda///////////
-    if ( buf == 'e' )  
+    //////////Andar para tras///////////
+    if ( buf == 'r' ) //
     {
-      digitalWrite(IN3, HIGH);
-      digitalWrite(IN4, HIGH);
-      delay (100);
-      digitalWrite(IN1, HIGH);
-      digitalWrite(IN2, LOW);
+      digitalWrite(IN1, LOW);
+      digitalWrite(IN2, HIGH);
       digitalWrite(IN3, HIGH);
       digitalWrite(IN4, LOW);
     }
+
+    //////////Virar para esquerda///////////
+    if ( buf == 'l' )  
+    {
+      digitalWrite(IN3, LOW);
+      digitalWrite(IN4, LOW);
+      delay (100);
+      digitalWrite(IN1, LOW);
+      digitalWrite(IN2, HIGH);
+      delay(200);
+      digitalWrite(IN1, LOW);
+      digitalWrite(IN2, HIGH);
+      //liga roda direita
+      digitalWrite(IN3, HIGH);
+      digitalWrite(IN4, LOW);
+      
+    }
                 
     //////////Virar para direita///////////
-    if ( buf == 'd' )  
+    if ( buf == 'b' )  
     {
       digitalWrite(IN1, HIGH);
       digitalWrite(IN2, HIGH);
       delay(100);
-      digitalWrite(IN1, HIGH);
-      digitalWrite(IN2, LOW);
       digitalWrite(IN3, HIGH);
       digitalWrite(IN4, LOW);
+      delay(200);
+      digitalWrite(IN1, LOW);
+      digitalWrite(IN2, HIGH);
+      //liga roda direita
+      digitalWrite(IN3, HIGH);
+      digitalWrite(IN4, LOW);
+      
     }
 
     //////////DESLIGAR///////////
